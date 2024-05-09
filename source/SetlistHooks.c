@@ -19,7 +19,7 @@ static char *originToIcon[][2] = {
     {"rb4", "<alt>1</alt> "},
     {"rb_blitz", "<alt>X</alt> "},
     {"ugc", "<alt>U</alt> "},
-    {"ugc_c3", "<alt>y</alt> "},
+    //{"ugc_c3", "<alt>y</alt> "},
     {"ugc_plus", "<alt>U</alt> "},
     {"ugc1", "<alt>U</alt> "},
     {"ugc2", "<alt>U</alt> "},
@@ -27,9 +27,17 @@ static char *originToIcon[][2] = {
     {"greenday", "<alt>0</alt> "},
     {"beatles", "<alt>b</alt> "},
     {"gh1", "<alt>R</alt> "},
-    {"gh2", "<alt>S</alt> "},
-    {"gh3", "<alt>s</alt> "},
+    //{"gh2", "<alt>S</alt> "},
+    //{"gh3", "<alt>s</alt> "},
     {"onyxite", "<alt>G</alt> "},
+
+    //dx sources
+    {"rb3dlc", "<alt>s</alt> "}, //replace gh3
+    {"gh", "<alt>R</alt> "},
+    {"ghdlc", "<alt>R</alt> "},
+    {"fnfestival", "<alt>y</alt> "}, //replace c3
+    {"rb4dlc", "<alt>S</alt> "}, //replace gh2
+    {"rb4_dlc", "<alt>S</alt> "}, //replace gh2
 };
 static int numOriginToIcon = sizeof(originToIcon) / sizeof(originToIcon[0]);
 
