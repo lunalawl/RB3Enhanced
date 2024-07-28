@@ -112,6 +112,7 @@ void *ModifierManagerConstructorHook(int thisModifierManager, int unk)
     ExecuteDTA(PORT_ROCKCENTRALGATEWAY, "{do{push_back {find $syscfg modifiers modifiers} (mod_mirror_mode)}}");
     ExecuteDTA(PORT_ROCKCENTRALGATEWAY, "{do{push_back {find $syscfg modifiers modifiers} (mod_color_shuffle)}}");
     ExecuteDTA(PORT_ROCKCENTRALGATEWAY, "{do{push_back {find $syscfg modifiers modifiers} (mod_gem_shuffle)}}");
+    ExecuteDTA(PORT_ROCKCENTRALGATEWAY, "{do{push_back {find $syscfg modifiers modifiers} (mod_double_bass)}}");
     return ModifierManagerConstructor(thisModifierManager, unk);
 }
 
@@ -217,6 +218,12 @@ void ApplyPatches()
     // skips check for stagekit to allow for fog commands to be issued without a stagekit plugged in
     POKE_32(PORT_STAGEKIT_EXISTS, NOP);
 #endif
+    // fixes a crash in online multiplayer
+#ifdef RB3E_WII
+    POKE_B(PORT_MULTIPLAYER_CRASH, PORT_MULTIPLAYER_FIX);
+#else
+    POKE_BL(PORT_MULTIPLAYER_CRASH, PORT_MULTIPLAYER_FIX);
+#endif
     RB3E_MSG("Patches applied!", NULL);
 }
 
@@ -239,8 +246,8 @@ void ApplyConfigurablePatches()
     if (config.UnlockClothing == 1)
     {
         // Unlocks all clothing, tattoos, face paint, and video venues
-        // TODO: Figure out what marks items as locked in the UI and patch that as well, right now it still shows them as locked
-        POKE_32(PORT_CHARACTER_CLOTHES_CHECK, NOP);
+        POKE_32(PORT_CHARACTER_CLOTHES_CHECK, LI(3, 1));
+        POKE_32(PORT_CHARACTER_CLOTHES_CHECK2, BLR);
         POKE_32(PORT_TATTOO_CHECK, LI(3, 1));
         POKE_32(PORT_FACE_PAINT_CHECK, LI(3, 1));
         POKE_32(PORT_VIDEO_VENUE_CHECK, LI(3, 1));
@@ -360,6 +367,7 @@ void ApplyHooks()
     HookFunction(PORT_SYMBOLPREINIT, &SymbolPreInit, &SymbolPreInitHook);
     HookFunction(PORT_INITSONGMETADATA, &InitSongMetadata, &InitSongMetadataHook);
     HookFunction(PORT_UPDATEPRESENCE, &UpdatePresence, &UpdatePresenceHook);
+    HookFunction(PORT_SONGPARSERPITCHTOSLOT, &SongParserPitchToSlot, &SongParserPitchToSlotHook);
 
 #ifdef RB3E_WII // wii exclusive hooks
     // HookFunction(PORT_USBWIIGETTYPE, &UsbWiiGetType, &UsbWiiGetTypeHook);
