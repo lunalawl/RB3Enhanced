@@ -13,38 +13,35 @@
 #include "rb3/SortNode.h"
 
 static char *originToIcon[][2] = {
-    {"rb1", "<alt>Y</alt> "},
-    {"rb2", "<alt>2</alt> "},
-    {"rb3", "<alt>B</alt> "},
-    {"rb4", "<alt>1</alt> "},
-    {"rb_blitz", "<alt>X</alt> "},
-    {"ugc", "<alt>U</alt> "},
-    //{"ugc_c3", "<alt>y</alt> "},
-    {"ugc_plus", "<alt>U</alt> "},
-    {"ugc1", "<alt>U</alt> "},
-    {"ugc2", "<alt>U</alt> "},
     {"lego", "<alt>A</alt> "},
-    {"greenday", "<alt>0</alt> "},
+    {"rb3", "<alt>B</alt> "},
+    {"blitz", "<alt>X</alt> "},
+    {"rb1", "<alt>Y</alt> "},
+    {"rb4_rivals", "<alt>g</alt> "},
+    {"rbvr", "<alt>r</alt> "},
     {"beatles", "<alt>b</alt> "},
-    {"gh1", "<alt>R</alt> "},
-    //{"gh2", "<alt>S</alt> "},
-    //{"gh3", "<alt>s</alt> "},
-    {"onyxite", "<alt>G</alt> "},
-
-    //dx sources
-    {"rb3dlc", "<alt>s</alt> "}, //replace gh3
+    {"greenday", "<alt>o</alt> "},
     {"gh", "<alt>R</alt> "},
     {"ghdlc", "<alt>R</alt> "},
-    {"fnfestival", "<alt>y</alt> "}, //replace c3
-    {"rb4dlc", "<alt>S</alt> "}, //replace gh2
-    {"rb4_dlc", "<alt>S</alt> "}, //replace gh2
+    {"rb4dlc", "<alt>S</alt> "},
+    {"rb4_dlc", "<alt>S</alt> "},
+    {"rb3dlc", "<alt>s</alt> "},
+    {"ugc1", "<alt>F</alt> "},
+    {"fnfestival", "<alt>G</alt> "},
+    {"dlc", "<alt>0</alt> "},
+    {"rb1_dlc", "<alt>0</alt> "},
+    {"ugc2", "<alt>U</alt> "},
+    {"ugc_lost", "<alt>U</alt> "},
+    {"rb4", "<alt>1</alt> "},
+    {"rb2", "<alt>2</alt> "},
+    {"rbtp_acdc", "<alt>O</alt> "},
 };
 static int numOriginToIcon = sizeof(originToIcon) / sizeof(originToIcon[0]);
 
 void SetSongAndArtistNameHook(BandLabel *label, SortNode *sortNode)
 {
     char newLabel[1024] = {0};
-    char *originLabel = "<alt>0</alt> "; // default
+    char *originLabel = "<alt>y</alt> "; // default
     int i = 0;
 
     if (config.GameOriginIcons == 1 && strlen(label->string) < 1000)
@@ -70,7 +67,7 @@ void SetSongAndArtistNameHook(BandLabel *label, SortNode *sortNode)
 void SetSongNameFromNodeHook(BandLabel *label, SortNode *sortNode)
 {
     char newLabel[1024] = {0};
-    char *originLabel = "<alt>0</alt> "; // default
+    char *originLabel = "<alt>y</alt> "; // default
     int i = 0;
 
     RB3E_DEBUG("SetSongNameFromNode: %s", label->string);
