@@ -12,6 +12,7 @@
 #include "quazal/InetAddress.h"
 #include "rb3/SongMetadata.h"
 #include "rb3/BandSongMgr.h"
+#include "rb3/RockCentralGateway.h"
 #include "rb3enhanced.h"
 #include "version.h"
 #include "ports.h"
@@ -65,27 +66,31 @@ typedef enum _HTTP_Request_Status
 void urldecode2(char *dst, const char *src)
 {
     char a, b;
-    while (*src) {
-            if ((*src == '%') &&
-                ((a = src[1]) && (b = src[2])) &&
-                (isxdigit(a) && isxdigit(b))) {
-                    if (a >= 'a')
-                            a -= 'a'-'A';
-                    if (a >= 'A')
-                            a -= ('A' - 10);
-                    else
-                            a -= '0';
-                    if (b >= 'a')
-                            b -= 'a'-'A';
-                    if (b >= 'A')
-                            b -= ('A' - 10);
-                    else
-                            b -= '0';
-                    *dst++ = 16*a+b;
-                    src+=3;
-            } else {
-                    *dst++ = *src++;
-            }
+    while (*src)
+    {
+        if ((*src == '%') &&
+            ((a = src[1]) && (b = src[2])) &&
+            (isxdigit(a) && isxdigit(b)))
+        {
+            if (a >= 'a')
+                a -= 'a' - 'A';
+            if (a >= 'A')
+                a -= ('A' - 10);
+            else
+                a -= '0';
+            if (b >= 'a')
+                b -= 'a' - 'A';
+            if (b >= 'A')
+                b -= ('A' - 10);
+            else
+                b -= '0';
+            *dst++ = 16 * a + b;
+            src += 3;
+        }
+        else
+        {
+            *dst++ = *src++;
+        }
     }
     *dst++ = '\0';
 }
@@ -213,7 +218,7 @@ void HTTP_Server_Accept(void *connection)
             strcat(response_buffer, "Content-Type: text/plain\r\n");
             strcat(response_buffer, "\r\n");
             strcat(response_buffer, "shortname=");
-            strcat(response_buffer, song_metadata->shortname);
+            strcat(response_buffer, song_metadata->shortname.sym);
             strcat(response_buffer, "\r\n");
             strcat(response_buffer, "title=");
             strcat(response_buffer, song_metadata->title.buf);
@@ -225,7 +230,7 @@ void HTTP_Server_Accept(void *connection)
             strcat(response_buffer, song_metadata->album.buf);
             strcat(response_buffer, "\r\n");
             strcat(response_buffer, "origin=");
-            strcat(response_buffer, song_metadata->gameOrigin);
+            strcat(response_buffer, song_metadata->gameOrigin.sym);
             strcat(response_buffer, "\r\n");
             strcat(response_buffer, "\r\n");
             RB3E_TCP_Send(s, (void *)response_buffer, strlen(response_buffer));
@@ -275,10 +280,10 @@ void HTTP_Server_Accept(void *connection)
             if (song_metadata != NULL)
             {
                 strcat(response_buffer, "[");
-                strcat(response_buffer, song_metadata->shortname);
+                strcat(response_buffer, song_metadata->shortname.sym);
                 strcat(response_buffer, "]\r\n");
                 strcat(response_buffer, "shortname=");
-                strcat(response_buffer, song_metadata->shortname);
+                strcat(response_buffer, song_metadata->shortname.sym);
                 strcat(response_buffer, "\r\n");
                 strcat(response_buffer, "title=");
                 strcat(response_buffer, song_metadata->title.buf);
@@ -290,7 +295,7 @@ void HTTP_Server_Accept(void *connection)
                 strcat(response_buffer, song_metadata->album.buf);
                 strcat(response_buffer, "\r\n");
                 strcat(response_buffer, "origin=");
-                strcat(response_buffer, song_metadata->gameOrigin);
+                strcat(response_buffer, song_metadata->gameOrigin.sym);
                 strcat(response_buffer, "\r\n");
                 strcat(response_buffer, "\r\n");
                 if (strlen(response_buffer) > 1500)

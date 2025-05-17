@@ -25,6 +25,8 @@
     }
 #endif
 
+RB3E_STUB(RB3EBase); // this will always be the start of .text
+
 // function stub definitions
 #ifndef RB3E_WII
 RB3E_STUB(AppConstructor) // AppConstructor is handled by the BrainSlug engine
@@ -59,6 +61,10 @@ RB3E_STUB(MemPrint)
 RB3E_STUB(MemNumHeaps)
 RB3E_STUB(MemAlloc)
 RB3E_STUB(MemFree)
+RB3E_STUB(FileIsDLC)
+#ifndef RB3E_XBOX
+RB3E_STUB(DataRegisterFunc) // DataRegisterFunc is inlined on 360
+#endif
 // hooked function stubs
 RB3E_STUB(Localize)
 RB3E_STUB(SetVenue)
@@ -101,3 +107,16 @@ RB3E_STUB(DataSet)
 RB3E_STUB(DataSetElem)
 RB3E_STUB(DataOnElem)
 RB3E_STUB(DataNodeGetObj)
+RB3E_STUB(HeapInit)
+RB3E_STUB(ResolvedModuleKeyboard)
+
+#ifdef RB3E_WII
+// Wii-specific functions
+// FUTURE(Emma): these really ought to be provided by the BrainSlug loader
+RB3E_STUB(OSFatal)
+RB3E_STUB(OSSetErrorHandler)
+RB3E_STUB(PPCHalt)
+RB3E_STUB(OSReturnToMenu)
+#endif
+
+RB3E_STUB(RB3EStubEnd);

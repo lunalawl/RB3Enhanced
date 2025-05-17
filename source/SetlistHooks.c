@@ -77,7 +77,7 @@ void SetSongAndArtistNameHook(BandLabel *label, SortNode *sortNode)
         SetSongAndArtistName(label, sortNode);
         for (i = 0; i < numOriginToIcon; i++)
         {
-            if (strcmp(sortNode->somethingElse->metaData->gameOrigin, originToIcon[i][0]) == 0)
+            if (strcmp(sortNode->somethingElse->metaData->gameOrigin.sym, originToIcon[i][0]) == 0)
             {
                 originLabel = originToIcon[i][1];
                 break;
@@ -105,7 +105,7 @@ void SetSongNameFromNodeHook(BandLabel *label, SortNode *sortNode)
         SetSongNameFromNode(label, sortNode);
         for (i = 0; i < numOriginToIcon; i++)
         {
-            if (strcmp(sortNode->somethingElse->metaData->gameOrigin, originToIcon[i][0]) == 0)
+            if (strcmp(sortNode->somethingElse->metaData->gameOrigin.sym, originToIcon[i][0]) == 0)
             {
                 originLabel = originToIcon[i][1];
                 break;
