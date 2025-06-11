@@ -62,6 +62,7 @@ RB3E_STUB(MemNumHeaps)
 RB3E_STUB(MemAlloc)
 RB3E_STUB(MemFree)
 RB3E_STUB(FileIsDLC)
+RB3E_STUB(DxRndSuspend)
 #ifndef RB3E_XBOX
 RB3E_STUB(DataRegisterFunc) // DataRegisterFunc is inlined on 360
 #endif
@@ -109,6 +110,8 @@ RB3E_STUB(DataOnElem)
 RB3E_STUB(DataNodeGetObj)
 RB3E_STUB(HeapInit)
 RB3E_STUB(ResolvedModuleKeyboard)
+RB3E_STUB(XboxContentConstruct)
+RB3E_STUB(CacheMgrXbox_MountAsync)
 
 #ifdef RB3E_WII
 // Wii-specific functions
@@ -117,6 +120,12 @@ RB3E_STUB(OSFatal)
 RB3E_STUB(OSSetErrorHandler)
 RB3E_STUB(PPCHalt)
 RB3E_STUB(OSReturnToMenu)
+RB3E_STUB(ARCInitHandle)
+RB3E_STUB(contentInitHandleTitleNAND)
+RB3E_STUB(CNTReleaseHandle)
+RB3E_STUB(CNTRead)
+RB3E_STUB(EC_GetContentInfos)
+RB3E_STUB(CNTOpen)
 #endif
 
 RB3E_STUB(RB3EStubEnd);

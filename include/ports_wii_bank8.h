@@ -89,6 +89,10 @@
 #define PORT_SYMBOLPREINIT 0x804be150          // Symbol::PreInit
 #define PORT_QUEUINGSOCKET_BIND 0x80068820     // Quazal::QueuingSocket::Bind
 #define PORT_QUAZALSOCKET_BIND 0x80029dc0      // Quazal::Socket::Bind
+#define PORT_METAMUSICISLOADED 0x809975d0      // MetaMusic::Loaded
+#define PORT_METAMUSICLOAD 0x809970d0          // MetaMusic::Load
+#define PORT_METAMUSICPOLL 0x80997610          // MetaMusic::Poll
+#define PORT_METAMUSICSTART 0x80997990         // MetaMusic::Start
 #define PORT_INITSONGMETADATA 0x8075a0c0       // InitSongMetadata
 #define PORT_UPDATEPRESENCE 0x8021c3d0         // PresenceMgr::UpdatePresence
 #define PORT_STEPSEQUENCEJOBSETSTEP 0x80035cf0 // Quazal::StepSequenceJob::SetStep
@@ -104,6 +108,7 @@
 #define PORT_DATAREGISTERFUNC 0x804545e0       // DataRegisterFunc
 #define PORT_FILEISLOCAL 0x80422560            // FileIsLocal
 #define PORT_FILEISDLC 0x80422570              // FileIsDLC
+#define PORT_SDMODECHECK 0x8041a790            // WiiContentMgr::SDModeCheck
 // instance addresses
 #define PORT_MODIFIERMGR_POINTER 0x80c904a8 // pointer to ModifierManager
 #define PORT_ROCKCENTRALGATEWAY 0x80c91818  // address of RockCentralGateway
@@ -143,6 +148,11 @@
 #define PORT_PPCHALT 0x80a49600                      // PPCHalt
 #define PORT_OSRETURNTOMENU 0x80aad970               // OSReturnToMenu
 #define PORT_OSREADROM 0x80aae180                    // OSReadROM
+#define PORT_ARCINITHANDLE 0x80a43020                // ARCInitHandle
+#define PORT_CONTENTINITHANDLETITLENAND 0x80a76fd0   // contentInitHandleTitleNAND
+#define PORT_CNTRELEASEHANDLE 0x80a77890             // CNTReleaseHandle
+#define PORT_CNTREAD 0x80a77c40                      // CNTRead
+#define PORT_ECGETCONTENTINFOS 0x80aed870            // EC_GetContentInfos
 // bank8 specific stuff
 #define PORT_BANK8_MEM2_RSO_ASSERT1 0x804428e8
 #define PORT_BANK8_MEM2_RSO_ASSERT2 0x80442940

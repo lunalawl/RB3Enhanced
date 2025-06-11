@@ -63,6 +63,7 @@ int RB3E_IsEmulator()
     if (HasRunDetection)
         return DetectionResult;
     DetectionResult = DetectDolphin();
+    HasRunDetection = 1;
     return DetectionResult;
 }
 
@@ -87,6 +88,13 @@ void RB3E_FlushCache(void * address, unsigned int size) {
     unsigned int alignedSize = ((unsigned int)address & ~0x1F) + 0x20;
     DCFlushRange((void *)alignedAddress, alignedSize);
     ICInvalidateRange((void *)alignedAddress, alignedSize);
+}
+
+int RB3E_DeleteSongCache()
+{
+    // TODO(Emma): delete song cache on Wii
+    RB3E_MSG("Tried to delete song cache on Wii, unsupported.", NULL);
+    return 0;
 }
 
 int RB3E_RelaunchGame()

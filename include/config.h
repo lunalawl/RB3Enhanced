@@ -23,10 +23,12 @@ typedef struct _RB3E_Config
     char GameOriginIcons;
     char LogFileAccess;
     char UnlockClothing;
+    char DisableMenuMusic;
     char LanguageOverride[RB3E_LANG_LEN + 1];
     char RawfilesDir[RB3E_MAX_CONFIG_LEN];
     char DisableRawfiles;
     char QuazalLogging;
+    char ContentLogging;
     // [Graphics]
     int RenderResX;
     int RenderResY;
@@ -57,6 +59,7 @@ typedef struct _RB3E_Config
     // [Wii]
     char NASServer[RB3E_MAX_DOMAIN];
     char LegacySDMode;
+    char ModernSDMode;
 #endif
 #ifdef RB3EDEBUG
     // [Debug]
